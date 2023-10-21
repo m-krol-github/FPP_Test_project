@@ -1,5 +1,5 @@
 
-namespace _Ambylon.Scripts.Player.OLD
+namespace Gameplay.Scripts.Player.OLD
 {
     public class LocalPlayerControl : global::Player
     {

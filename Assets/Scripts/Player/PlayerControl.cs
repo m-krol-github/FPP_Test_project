@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using _Ambylon.Scripts.Objects.Interactable;
+using Gameplay.Scripts.Objects.Interactable;
 using UnityEngine;
 
 public class PlayerControl : Player, IInteractable

@@ -1,8 +1,8 @@
-using _Ambylon.PlayerInput;
-using _Ambylon.Scripts.Objects.Interactable;
+using Gameplay.Inputs;
+
 using UnityEngine;
 
-namespace _Ambylon.PlayerController
+namespace Gameplay.PlayerControl
 {
     public sealed class CameraRaycast : MonoBehaviour
     {
@@ -10,16 +10,17 @@ namespace _Ambylon.PlayerController
         [SerializeField] private float rayDistance = 2f;
         [SerializeField] private Camera cam;
         
-        private XRIDefaultInputActions _userInput;
+        private UserInput _userInput;
 
         private bool _isPerformed;
 
         private void Awake()
         {
-            _userInput = new XRIDefaultInputActions();
-            _userInput.Actions.RaycastHitButton.performed += _ => _isPerformed = true;
+            _userInput = new UserInput();
+            _userInput.Actions.PrimaryAction.performed += _ => _isPerformed = true;
             
             _isPerformed = false;
+
             cam = Camera.main;
         }
 
@@ -29,10 +30,7 @@ namespace _Ambylon.PlayerController
         }
 
         private void Update()
-        {
-            if(!playerController.IsNormalControls)
-                return;
-            
+        {            
             Vector3 forward = transform.TransformDirection(Vector3.forward) * rayDistance;
             Debug.DrawRay(transform.position, forward, Color.green);
 

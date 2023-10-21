@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Ambylon.Scripts.Objects.Interactable
+namespace Gameplay.Scripts.Objects.Interactable
 {
     public abstract class EnvironmentObject : MonoBehaviour, IInteractable
     {

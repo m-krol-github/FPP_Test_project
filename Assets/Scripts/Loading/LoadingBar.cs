@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Ambylon.Scripts.Loading
+namespace Gameplay.Scripts.Loading
 {
     public class LoadingBar : MonoBehaviour
     {

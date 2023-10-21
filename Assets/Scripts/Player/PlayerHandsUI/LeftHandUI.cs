@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Ambylon.PlayerController
+namespace Gameplay.PlayerController
 {
     public class LeftHandUI : BaseUI
     {

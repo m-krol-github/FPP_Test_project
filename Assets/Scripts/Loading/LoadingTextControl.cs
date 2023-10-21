@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace _Ambylon.Scripts.Loading
+namespace Gameplay.Scripts.Loading
 {
     public class LoadingTextControl : MonoBehaviour
     {

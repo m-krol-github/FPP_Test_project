@@ -1,4 +1,4 @@
-namespace _Ambylon.Scripts.Objects.Interactable
+namespace Gameplay.Scripts.Objects.Interactable
 {
     public interface IInteractable
     {
