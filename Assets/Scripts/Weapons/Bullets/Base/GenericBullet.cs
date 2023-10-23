@@ -12,10 +12,7 @@ namespace Gameplay.Weapons
 
         [SerializeField] protected LayerMask avoidLayer;
 
-        [SerializeField] protected float speed;
         [SerializeField] protected bool useCollision;
-
-
 
         protected virtual void OnCollisionEnter(Collision collision)
         {

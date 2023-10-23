@@ -1,4 +1,5 @@
 using Gameplay.Inputs;
+using Gameplay.Pool;
 using Gameplay.Scripts.Player.OLD;
 
 using System;
@@ -32,14 +33,20 @@ namespace Gameplay.PlayerControl
         [SerializeField] private float gravityForce;
         
         [Header("Player References")]
-        [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator playerArmatureAnimator;
         [SerializeField] private CharacterController charController;
         [SerializeField] private bool isGrounded;
 
+
         private float _rotateForce;
         private Vector3 _moveDirection;
-        
+
+        private float default_ControllerHeight;
+        private bool is_Crouching;
+        private Vector3 default_CamPos;
+        private float camHeight;
+        private Transform firstPerson_View;
+
         private UserInput _userInput;
         
         private void Awake()
@@ -48,18 +55,11 @@ namespace Gameplay.PlayerControl
             
             _userInput.Actions.PrimaryAction.canceled += _ => PlayerShoot();
             _userInput.Actions.SecondaryAction.canceled += _ => PlayerReloadWeapon();
-
-            PlayerStart();
         }
         
         private void OnEnable()
         {
             _userInput.Enable();
-        }
-
-        private void PlayerStart()
-        {
-            //playerCamera.transform.localPosition = new Vector3(0, 1.8f, 0.6f);
         }
 
         private void Update()
@@ -107,13 +107,6 @@ namespace Gameplay.PlayerControl
             yield return new WaitForSeconds(jumpSpeed);
             playerArmatureAnimator.SetFloat("VelocityY", 0f);
         }
-
-
-        private float default_ControllerHeight;
-        private bool is_Crouching;
-        private Vector3 default_CamPos;
-        private float camHeight;
-        private Transform firstPerson_View;
 
         private IEnumerator MoveCameraCrouch()
         {
