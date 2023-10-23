@@ -17,9 +17,6 @@ namespace Gameplay.PlayerControl
         [SerializeField] private Camera playerCamera;
         public Camera PlayerCamera => playerCamera;
 
-        [SerializeField] private LocalPlayerControl localPlayerControl;
-        public LocalPlayerControl LocalPlayerControl => localPlayerControl;
-
         [SerializeField] private PlayerWeaponShooting weaponShooting;
         public PlayerWeaponShooting WeaponShooting => weaponShooting;
         
@@ -35,10 +32,7 @@ namespace Gameplay.PlayerControl
         [Header("Player References")]
         [SerializeField] private Animator playerArmatureAnimator;
         [SerializeField] private CharacterController charController;
-        [SerializeField] private bool isGrounded;
 
-
-        private float _rotateForce;
         private Vector3 _moveDirection;
 
         private float default_ControllerHeight;
@@ -64,7 +58,6 @@ namespace Gameplay.PlayerControl
 
         private void Update()
         {
-            isGrounded = charController.isGrounded;
             MovePlayer();
         }
 
@@ -79,10 +72,6 @@ namespace Gameplay.PlayerControl
             _moveDirection.y = yValue;
 
             _moveDirection.y += Physics.gravity.y * Time.deltaTime * gravityForce;
-
-            //rb.velocity = _moveDirection;
-
-            //playerArmatureAnimator.SetFloat("Move", Mathf.Abs(xValue) + Mathf.Abs(zValue));
 
             if (_userInput.Actions.Jump.IsPressed() && charController.isGrounded)
             {
@@ -100,27 +89,6 @@ namespace Gameplay.PlayerControl
         private void PlayerReloadWeapon()
         {
             weaponShooting.ReloadWeapon();
-        }
-
-        private IEnumerator JumpFalling()
-        {
-            yield return new WaitForSeconds(jumpSpeed);
-            playerArmatureAnimator.SetFloat("VelocityY", 0f);
-        }
-
-        private IEnumerator MoveCameraCrouch()
-        {
-            charController.height = is_Crouching ? default_ControllerHeight / 1.5f : default_ControllerHeight;
-            charController.center = new Vector3(0f, charController.height / 2f, 0f);
-
-            camHeight = is_Crouching ? default_CamPos.y / 1.5f : default_CamPos.y;
-
-            while (Mathf.Abs(camHeight - firstPerson_View.localPosition.y) > 0.01f)
-            {
-                firstPerson_View.localPosition = Vector3.Lerp(firstPerson_View.localPosition, new Vector3(default_CamPos.x, camHeight, default_CamPos.z), Time.deltaTime * 11f);
-
-                yield return null;
-            }
         }
 
         private void OnDisable()

@@ -1042,7 +1042,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 8944336656349189699}
-  localPlayerControl: {fileID: 0}
   weaponShooting: {fileID: 286460472}
   <IsLockedRotation>k__BackingField: 1
   moveSpeed: 0.01
@@ -1050,7 +1049,6 @@ MonoBehaviour:
   gravityForce: 0.01
   playerArmatureAnimator: {fileID: 286460471}
   charController: {fileID: 286460468}
-  isGrounded: 0
 --- !u!95 &286460471 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95010712394653476, guid: 34a16105ad9b24e909748fa16013f52d,
